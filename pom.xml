@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.clases</groupId>
+   <artifactId>cursoCImaven</artifactId>
+   <version>4.0.0</version>
+   <name>cursoCImaven</name>
+   <packaging>jar</packaging>
+   <url>www.clases.com</url>
+
+  
+   <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.0</version>
+      <scope>test</scope>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <!-- Sonar -->
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+    <sonar.language>java</sonar.language>
+ </properties>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+	<plugins>
+	 <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jar-plugin</artifactId>
+		<version>2.6</version>
+		<configuration>
+<!--Pluging configuration -->
+			 <archive>
+				<manifest>
+					<!-- Jar file entry point -->
+				<mainClass>${project.groupId}.App</mainClass>
+				</manifest>
+			  </archive>
+			</configuration>
+	</plugin>
+    <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.6.0.201210061924</version>
+    <configuration>
+        <destFile>${sonar.jacoco.reportPath}</destFile>
+        <append>true</append>
+    </configuration>
+    <executions>
+        <execution>
+            <id>agent</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+    </executions>
+    </plugin>
+       </plugins>
+  </build> 
+
+</project>
